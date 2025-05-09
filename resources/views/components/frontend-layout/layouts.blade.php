@@ -11,6 +11,7 @@
 
 <body>
     <x-frontend-layout.header/>
+    @include('sweetalert::alert')
     {{ $slot }}
     <x-frontend-layout.footer/>
 </body>

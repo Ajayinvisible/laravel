@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Models\Course;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
@@ -15,8 +16,18 @@ class FrontendController extends Controller
     public function about()
     {
         $company = Company::all();
+
         return view('about', [
-            'company' => $company
+            'company' => $company,
+
+        ]);
+    }
+
+    public function course()
+    {
+        $course = Course::all();
+        return view('course',[
+            'course' => $course,
         ]);
     }
 

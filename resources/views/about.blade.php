@@ -8,7 +8,8 @@
     </section>
     <hr>
     <section class="my-20">
-        <div class="mx-w-screen-xl mx-auto px-4">
+        <div class="max-w-screen-xl mx-auto px-4">
+            <h1 class="text-2xl text-slate-700 font-bold mb-4 border-slate-700 border-b-2 pb-4">Company</h1>
             <table class="w-full border border-collapse text-center">
                 <thead>
                     <tr>
@@ -39,7 +40,7 @@
                             </td>
                             <td class="border">
                                 <form action="{{ route('delete', $com->id) }}" method="POST"
-                                    onsubmit="return confirmDelete(this);">
+                                    onsubmit="return confirmDelete(event, this, 'company');">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit"
@@ -58,11 +59,15 @@
             </table>
         </div>
     </section>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        function confirmDelete(form) {
+        function confirmDelete(event, form, type = 'item', name = '') {
             event.preventDefault();
+
+            const itemLabel = ${type}${name ? : ${name} : ''};
+
             Swal.fire({
-                title: 'Are you sure?',
+                title: Are you sure you want to delete ${itemLabel}?,
                 text: "This action cannot be undone.",
                 icon: 'warning',
                 showCancelButton: true,
@@ -74,7 +79,8 @@
                     form.submit();
                 }
             });
+
             return false;
-    }
+        }
     </script>
 </x-frontend-layout.layouts>
